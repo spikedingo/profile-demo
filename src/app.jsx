@@ -1,16 +1,34 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
 import './app.css';
+// eslint-disable-next-line import/no-unresolved
 import Home from './pages/home';
-import About from './pages/about';
 
 function App() {
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('demo_profile_data');
+    if (!storedData) {
+      const data = {
+        username: 'Spike',
+        email: 'spikedingo@gmail.com',
+        mobile: 13855556666,
+      };
+
+      localStorage.setItem('demo_profile_data', JSON.stringify(data));
+    }
+
+    setDataLoaded(true);
+  }, []);
+
+  if (!dataLoaded) {
+    return <div className="app">Data Loading</div>;
+  }
   return (
     <div className="app">
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

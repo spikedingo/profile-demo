@@ -28,3 +28,55 @@ pre {
 .app-link {
   color: #4f6af5;
 }
+
+/* init modal style */
+.ReactModal__Overlay.classic-modal-overlay {
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  position: fixed;
+  inset: 0px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  outline: 0;
+  text-align: center;
+}
+
+.ReactModal__Overlay--after-open.classic-modal-overlay {
+  opacity: 1;
+  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.ReactModal__Overlay--before-close.classic-modal-overlay {
+  opacity: 0;
+}
+
+.ReactModal__Overlay.classic-modal-overlay .ReactModal__Content {
+  transition: all 400ms ease-in-out !important;
+  transform: scale(1) !important;
+}
+
+.ReactModal__Overlay.classic-modal-overlay::before {
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+  content: '';
+}
+
+.ReactModal__Overlay.classic-modal-overlay.loading .ReactModal__Content {
+  height: 300px !important;
+}
+
+.ReactModal__Overlay--after-open.classic-modal-overlay .ReactModal__Content {
+  /* opacity: 1; */
+  margin-top: 0 !important;
+}
+
+.ReactModal__Overlay--before-close.classic-modal-overlay .ReactModal__Content {
+  /* opacity: 0; */
+  transform: scale(1.2) !important;
+}
